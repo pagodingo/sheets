@@ -9,11 +9,48 @@ class App extends React.Component {
       headers: [],
       loadingState: 1
     };
+    this.addHeader = this.addHeader.bind(this);
     this.populateTable = this.populateTable.bind(this);
     this.closeEditor = this.closeEditor.bind(this);
     this.uploadFile = this.uploadTSV.bind(this);
+    this.export = this.export.bind(this);
   }
 
+  export(){
+    var fileExport = []
+    //iterate over table and export data to text
+    var table = document.getElementById("headers")
+
+    // support for pulling data out of <th>
+    var elements = [].slice.call(table.children);
+    elements.map((element) => {
+      if (element.nodeName == 'TH'){
+        fileExport.push(element.children[0].value)
+      } else {
+      //support for pulling data out of <tr>, then <td>
+        var innerElements = [].slice.call(element.children)
+        innerElements.map((innerElement) => {
+          fileExport.push(innerElement.children[0].value)
+        })
+        }
+    })
+    console.log(fileExport)
+
+  var download = () => (function download(filename = 'export.txt', text = fileExport) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
+    console.log('clicked')
+  })()
+  download();
+}
 
   closeEditor() {
     confirm("Are you sure you want to close?") ?
@@ -48,7 +85,7 @@ class App extends React.Component {
           rowNode.appendChild(dataNode)
         }
       }
-      document.getElementById('table').appendChild(rowNode);
+      document.getElementById('headers').appendChild(rowNode);
       
     }
 
@@ -65,8 +102,12 @@ class App extends React.Component {
       dataNode.appendChild(inputNode)
       rowNode.appendChild(dataNode)
     }
-    document.getElementById('table').appendChild(rowNode)
+    document.getElementById('headers').appendChild(rowNode)
   }
+}
+addHeader(){
+  var header = document.createElement("th")
+  document.getElementById('headers').appendChild(header)
 }
 
   uploadTSV() {
@@ -129,28 +170,30 @@ render() {
       <div>
         <h3>welcome bruh</h3>
         <h3>Hosted on Dropbox</h3>
-        <button style={{float: 'right',color: 'green',width: 100,height:30}}>Export</button>
+        <button onClick={() => this.export()} style={{float: 'right',color: 'green',width: 100,height:30}}>Export</button>
         <label for='changefile'>Change file: </label>
         <input
           id='changefile'
           type="text"
           placeholder="enter file path e.g. /data - data (1).tsv"
         />
-        <table id={"table"}
+        <table id="table"
           style={{
             border: "1px solid #ddd",
             padding: "8px",
             fontFamily: "Arial, Helvetica, sans-serif",
             borderCollapse: "collapse",
           }}
-        >
+        ><div id="headers" value='headerssss'>
          {this.state.headers.map((header => (
-           <th><input value={header}/></th>
+           <th><input defaultValue={header} /></th>
          )))}
+         </div>
             </table>
       <button onClick={() => this.closeEditor()} class="fixed" id="fixy">
         Close Editor
       </button>
+      <button onClick={() => this.addHeader()}> add header</button>
     </div>
   );
   }
