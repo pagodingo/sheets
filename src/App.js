@@ -33,10 +33,12 @@ class App extends React.Component {
           fileExport.push(innerElement.children[0].value)
         })
         }
+        // add some nice new lines to be pretty
+        fileExport[fileExport.length - 1] = fileExport[fileExport.length - 1] + '\r\n'
     })
     console.log(fileExport)
 
-  var download = () => (function download(filename = 'export.txt', text = fileExport) {
+  var download = () => (function download(filename = 'export.csv', text = fileExport) {
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', filename);
@@ -47,10 +49,13 @@ class App extends React.Component {
     element.click();
   
     document.body.removeChild(element);
-    console.log('clicked')
   })()
-  download();
+  download(); 
 }
+
+  handleChange(e){
+    true
+  }
 
   closeEditor() {
     confirm("Are you sure you want to close?") ?
@@ -80,6 +85,7 @@ class App extends React.Component {
           dataNode = document.createElement("td");
           var text = entry
           var inputNode = document.createElement("input")
+          inputNode.ref = (call_back) => {this.e = call_back}
           inputNode.value = text
           dataNode.appendChild(inputNode)
           rowNode.appendChild(dataNode)
@@ -186,7 +192,7 @@ render() {
           }}
         ><div id="headers" value='headerssss'>
          {this.state.headers.map((header => (
-           <th><input defaultValue={header} /></th>
+           <th><input ref={(call_back) => {this.e = call_back}}  defaultValue={header}/></th>
          )))}
          </div>
             </table>
