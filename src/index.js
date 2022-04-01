@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Editor from './Editor.js';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Editor />
   </React.StrictMode>,
   document.getElementById('root')
 );

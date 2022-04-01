@@ -5,114 +5,120 @@ it will not make sense. I wanted a long-green submit button and didn't want
 to expend any brain power and make it myself.
 */
 
-
-#table {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-#table td,#table th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-#table tr:nth-child(even){background-color: #f2f2f2;}
-  
-#table tr:hover {background-color: #ddd;}
-  
-#table img {
-    width: 50px;
-    height: 50px;
+body{
+  background-color: #eefcf7;
+}
+#editor {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-#table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #04AA6D;
-    color: white;
-  }
+#editor td,
+#editor th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
 
-  .fixed:focus ~ label {
-    color: red;  
-  }
-  
-  .fixed:focus ~ label,
-  .fixed:valid ~ label {
-    top: 0;
-    transform: scale(0.6, 0.6);
-  }
-  
-  .fixed {
-    font-size: 20px;  
-    width: 100%;
-    border: none;  
-    margin-top: 10px;
-    position: -webkit-sticky;
-    position: sticky;
-  }
-  
-  .fixed:focus {
-    outline: none;
-  }
-  
-  .after {
-    width: 100%;
-    height: 2px;
-    background: #04AA6D;
-    background-color: #04AA6D;
-    background-size: 200% 100%;
-    background-position: 100% 0;
-    transition: all 0.6s ease;
-    position: -webkit-sticky;
-  }
-  
-  .fixed:focus ~ .after {
-    background-position: 0 0;
-  }
-  
-  .fixed {
-    position: relative;
-    width: 100%;
-    font-size: 20px;  
-    font-family: Amatic SC;
-    line-height: 1.5;
-    margin-top: 20px;
-    padding: 2px 10px;
-    color: rgba(0, 0, 0, 0.4);
-    background: grey;
-    border: none;
-    background: #04AA6D;
-    background-color: #04AA6D;
-    position: -webkit-sticky;
-    position: sticky;
-    background-size: 200% 100%;
-    background-position: 100% 0;
-    transition: all 0.6s ease;
-  }
-  
-  .fixed:before {
-    position: absolute;
-    top: 2px;
-    bottom: 2px;
-    left: 2px;
-    right: 2px;
-    display: block;
-    background-color: #04AA6D;
-    }
-  
-  .fixed:active,
-  .fixed:focus,
-  .fixed:hover {
-    outline: none;
-    background-position: 0 0;
-    color: white;
-    
-  }
+#editor tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
-  #fixy {
-    position: -webkit-sticky;
-    position: sticky;
-    bottom: 2px;
-  }
+#editor tr:hover {
+  background-color: #ddd;
+}
+
+#editor img {
+  width: 50px;
+  height: 50px;
+}
+
+#editor th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #8eafa3;
+  color: white;
+}
+
+
+#export-btn {
+  float: right;
+  color: green;
+  width: 130px;
+  height: 30px;
+}
+
+.fixed:focus~label {
+  color: red;
+}
+
+.fixed:focus~label,
+.fixed:valid~label {
+  top: 0;
+  transform: scale(0.6, 0.6);
+}
+
+.fixed:focus {
+  outline: none;
+}
+
+.after {
+  width: 100%;
+  height: 2px;
+  background: #04AA6D;
+  background-color: #04AA6D;
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  transition: all 0.6s ease;
+  position: -webkit-sticky;
+}
+
+.fixed:focus~.after {
+  background-position: 0 0;
+}
+
+.fixed {
+  width: 100%;
+  font-size: 20px;
+  font-family: Amatic SC;
+  line-height: 1.5;
+  margin-top: 20px;
+  padding: 2px 10px;
+  color: rgba(0, 0, 0, 0.4);
+  background: hsla(0, 0%, 100%, 0.472);
+  border: none;
+  background: #04AA6D;
+  background-color: #a1dbbe;
+  position: -webkit-sticky;
+  position: fixed;
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  background-repeat: repeat;
+  transition: all 0.6s ease;
+  bottom: 0pt;
+  left: 0pt;
+  background-position: 0% 0%;
+}
+
+.fixed:before {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  right: 2px;
+  display: block;
+  background-color: #a0efd2;
+}
+
+.fixed:active,
+.fixed:focus,
+.fixed:hover {
+  outline: none;
+  background-position: 0 0;
+  color: rgb(42, 65, 11);
+
+}
