@@ -10,7 +10,7 @@ class Editor extends React.Component {
     this.closeEditor = this.closeEditor.bind(this);
   }
 
-handleChange(e){ true } //manage state change of cell(s)
+handleChange(e){ true } //manage state of cell(s)
 
 import() {
   let file = document.getElementById('file').files[0] 
@@ -54,7 +54,7 @@ export(){
 
 openEditor(width, height){
   (async function (){
-    return 0 // timeout needed to render. cant be bothered to fix.
+    return 0 // timeout needed to render.
   })().then(() => {
     for (var i = 0; i < height; ++i){
         let row = document.createElement("tr");
