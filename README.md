@@ -1,1 +1,1 @@
-# CSV-TSV-Editor
+# a lightweight sheet editor
