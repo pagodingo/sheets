@@ -1,1 +1,1 @@
-# a lightweight sheet editor
+# A Lightweight Sheet Editor Written in JS
