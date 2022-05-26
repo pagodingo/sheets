@@ -8,35 +8,56 @@ to expend any brain power and make it myself.
 body{
   background-color: #eefcf7;
 }
-#editor {
+
+.highlighted {
+  background-color:rgb(214, 90, 32);
+}
+
+#table {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
   border: 1px solid #ddd;
   padding: 8px;
   font-family: Arial, Helvetica, sans-serif;
+  counter-reset: rowNumber;
+}
+table {
+  counter-reset: rowNumber;
 }
 
-#editor td,
-#editor th {
+table tr::before {
+  border: 1px solid #ddd;
+  font-size: .7em;
+  display: table-cell;
+  width: 30px;
+  counter-increment: rowNumber;
+  content: counter(rowNumber) "";
+  margin-left: 0.1em;
+  padding-right: 0.1em;
+  text-align: center;
+}
+
+#table td,
+#table th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#editor tr:nth-child(even) {
+#table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-#editor tr:hover {
+#table td:hover {
   background-color: #ddd;
 }
 
-#editor img {
+#table img {
   width: 50px;
   height: 50px;
 }
 
-#editor th {
+#table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;

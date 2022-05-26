@@ -1,18 +1,57 @@
 import React from "react";
 import "./App.css";
+import Home from "./components/Home.js"
+import Editor from "./components/Editor.js"
 
-class Editor extends React.Component {
+class App extends React.Component {
   constructor() { super();
     this.state = {view: "Home"};
-    this.import = this.import.bind(this);
-    this.export = this.export.bind(this);
+    this.importFile = this.importFile.bind(this);
+    this.exportFile = this.exportFile.bind(this);
     this.openEditor = this.openEditor.bind(this);
     this.closeEditor = this.closeEditor.bind(this);
   }
 
 handleChange(e){ true } //manage state of cell(s)
 
-import() {
+importFile() {
+  document.getElementById('tsv-file').files[0] == undefined ?
+  window.alert('please select a file.') : this.setState({loadingState: 2});
+
+  let tsv = document.getElementById("file").files[0];
+  tsv.stream().getReader().read()
+  .then(stream => {
+      var decoder = new TextDecoder();
+      var decoded = decoder.decode(stream.value)
+      var headers = []
+      var entries = []
+      var rows = []
+
+      decoded.split('\r\n') === [] || decoded.split('\r\n')[1] == undefined ? 
+        rows = decoded.split(',') : 
+        rows = decoded.split('\r\n')
+
+      for (var i = 0; i < rows.length; ++i){
+
+        var row = rows[i]
+        entries.push([row])
+
+      }
+      
+      entries.shift();
+
+      rows[0].split('\t')[1] == undefined ? 
+        headers = rows[0].split(',') :
+        headers = rows[0].split('\t')
+      this.setState({
+        view: "Editor"
+      })
+
+      return entries
+  }).then(entries => this.populateTable(entries))
+}
+
+/*importFile() {
   let file = document.getElementById('file').files[0] 
   if (file === undefined) {return alert("please select a file.")}
 
@@ -21,15 +60,15 @@ import() {
     let data = decoder.decode(stream.value)
     let sheet = []
     let table = []
-    if (data.includes("\r\n")){ sheet = data.split('\r\n') } // split new lines if new lines are present
+    if (data.includes("\r\n")){ sheet = data.split('\r\n') }
     
     sheet.split(',')
     for (var i = 0; i < sheet.length; ++i){
       
     }
   })
-}
-export(){
+}*/
+exportFile(){
   let editor = document.getElementById("editor");
   let rows = [].slice.call(editor.children);
   let file = [];
@@ -60,12 +99,13 @@ openEditor(width, height){
         let row = document.createElement("tr");
       for (var j = 0; j < width; ++j){
         let cell = document.createElement("td");
-        let input = document.createElement("input");
-          input.placeholder = "..."
+        let input = document.createElement("div");
+          input.contentEditable = true;
+          input.style = "none"
           cell.appendChild(input);
           row.appendChild(cell);
       }
-          document.getElementById("editor").appendChild(row);
+          document.getElementById("table").appendChild(row);
     }})
   this.setState({view: "Editor"});
 }
@@ -75,23 +115,17 @@ closeEditor() { confirm("Close Session?") ? this.setState({view: "Home"}) : aler
 render() {
   switch(this.state.view){
     case "Home":
-      return (
-        <div>
-          <h1>cell-U-lite</h1>
-          <input id="file" type="file"></input>
-          <button onClick={() => this.import()}>Import File</button>
-          <button onClick={() => this.openEditor(10,50)}>10 x 50</button>
-          <button onClick={() => this.openEditor(50,50)}>50 x 50</button> 
-          <button onClick={() => this.openEditor(100,100)}>100 x 100</button>
-          <button onClick={() => this.openEditor(100,250)}>100 x 250</button>
-        </div>
-      )
+      return <Home 
+        importFile={this.importFile}
+        openEditor={this.openEditor}
+      />
     case "Editor":
-      return ( 
-        <div>
-          <button id="export-btn" onClick={() => this.export()}>Export</button>
-          <input id="file" type="file"></input><button onClick={() => this.import()}>Import File</button>
-          <table id="editor" />
-          <button id="close-editor-btn" class="fixed" onClick={() => this.closeEditor()}>Close Editor</button>
-        </div>)}}}
-export default Editor;
+      return <Editor
+        importFile={this.importFile}
+        exportFile={this.exportFile}
+        closeEditor={this.closeEditor}
+      />
+  }
+}
+}
+export default App;
