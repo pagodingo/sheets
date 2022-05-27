@@ -6,12 +6,18 @@ to expend any brain power and make it myself.
 */
 
 body{
-  background-color: #eefcf7;
+ /* background-color: #eefcf7;*/
+ background-color: #eeeeee;
 }
 
 .highlighted {
   background-color:rgb(214, 90, 32);
 }
+
+input, .cell {
+  background: transparent; outline: none; border: none; cursor: pointer;
+}
+
 
 #table {
   font-family: Arial, Helvetica, sans-serif;
@@ -23,19 +29,50 @@ body{
   counter-reset: rowNumber;
 }
 table {
-  counter-reset: rowNumber;
+  counter-reset: rowNumber, headerLEtter;
+  counter-reset: headerLetter;
+  cursor: pointer;
+}
+.resizer:hover,
+.resizing {
+    border-right: 2px solid blue;
+}
+
+.active {
+  border: 1.5px solid blue !important;
+}
+.resizer {
+  /* Displayed at the right side of column */
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5px;
+  cursor: col-resize;
+  user-select: none;
 }
 
 table tr::before {
   border: 1px solid #ddd;
-  font-size: .7em;
+  font-size: .5em;
   display: table-cell;
   width: 30px;
+  margin-top: 1em;
   counter-increment: rowNumber;
   content: counter(rowNumber) "";
   margin-left: 0.1em;
   padding-right: 0.1em;
   text-align: center;
+  background-color: #f2f2f2;
+  color: #949494;
+}
+
+table th::before {
+  display: table-cell;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  counter-increment: headerLetter;
+  content: counter(headerLetter) "";
 }
 
 #table td,
@@ -45,16 +82,7 @@ table tr::before {
 }
 
 #table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-#table td:hover {
-  background-color: #ddd;
-}
-
-#table img {
-  width: 50px;
-  height: 50px;
+  /*background-color: #f2f2f2;*/
 }
 
 #table th {
@@ -63,6 +91,10 @@ table tr::before {
   text-align: left;
   background-color: #8eafa3;
   color: white;
+}
+
+#table td {
+  width: 10em;
 }
 
 

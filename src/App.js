@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Home from "./components/Home.js"
 import Editor from "./components/Editor.js"
+import { resizeColumns } from "./core/resizeColumns.js"
 
 class App extends React.Component {
   constructor() { super();
@@ -12,11 +13,28 @@ class App extends React.Component {
     this.closeEditor = this.closeEditor.bind(this);
   }
 
-handleChange(e){ true } //manage state of cell(s)
+handleChange(e){ true } // necessary to manage state of cells
 
 importFile() {
-  document.getElementById('tsv-file').files[0] == undefined ?
-  window.alert('please select a file.') : this.setState({loadingState: 2});
+  /*importFile() {
+  let file = document.getElementById('file').files[0] 
+  if (file === undefined) {return alert("please select a file.")}
+
+  file.stream().getReader().read().then(stream => {
+    let decoder = new TextDecoder();
+    let data = decoder.decode(stream.value)
+    let sheet = []
+    let table = []
+    if (data.includes("\r\n")){ sheet = data.split('\r\n') }
+    
+    sheet.split(',')
+    for (var i = 0; i < sheet.length; ++i){
+      
+    }
+  })
+}*/
+  document.getElementById('file').files[0] == undefined ?
+  window.alert('please select a file.') : this.setState({view: "Editor"});
 
   let tsv = document.getElementById("file").files[0];
   tsv.stream().getReader().read()
@@ -51,23 +69,6 @@ importFile() {
   }).then(entries => this.populateTable(entries))
 }
 
-/*importFile() {
-  let file = document.getElementById('file').files[0] 
-  if (file === undefined) {return alert("please select a file.")}
-
-  file.stream().getReader().read().then(stream => {
-    let decoder = new TextDecoder();
-    let data = decoder.decode(stream.value)
-    let sheet = []
-    let table = []
-    if (data.includes("\r\n")){ sheet = data.split('\r\n') }
-    
-    sheet.split(',')
-    for (var i = 0; i < sheet.length; ++i){
-      
-    }
-  })
-}*/
 exportFile(){
   let editor = document.getElementById("editor");
   let rows = [].slice.call(editor.children);
@@ -78,7 +79,7 @@ exportFile(){
     for (var j = 0; j < row.length; ++j){
       file.push(row[j].children[0].value)
     }
-    file[file.length - 1] += '\r\n'// add some nice new lines to be pretty
+    file[file.length - 1] += '\r\n'
   }
 
   (function (filename = 'export.csv', text = file) {
@@ -89,6 +90,10 @@ exportFile(){
     a.click();
     document.body.removeChild(a);
   })()
+}
+
+setActive = (element) => {
+  return 0;
 }
 
 openEditor(width, height){
@@ -102,12 +107,23 @@ openEditor(width, height){
         let input = document.createElement("div");
           input.contentEditable = true;
           input.style = "none"
+          input.classList.add("cell")
+          input.onclick = (e) => {
+            let actives = document.getElementsByClassName("active")
+            if (actives.length == 0){
+              e.target.parentElement.classList.add("active");
+            } else {
+              actives[0].classList.remove("active");
+              e.target.parentElement.classList.add("active");
+            }
+          }
           cell.appendChild(input);
           row.appendChild(cell);
       }
           document.getElementById("table").appendChild(row);
     }})
   this.setState({view: "Editor"});
+  //resizeColumns();
 }
 
 closeEditor() { confirm("Close Session?") ? this.setState({view: "Home"}) : alert("Canceled") }
