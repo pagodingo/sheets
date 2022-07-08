@@ -1,8 +1,8 @@
 import activeCell from "../core/active-cell"
 
-const Cell= ()=> {
-  let cell=      document.createElement("td")
-  let editable=  document.createElement("div")
+const Cell = () => {
+  let cell      =  document.createElement("td")
+  let editable  =  document.createElement("div")
   
   Object.assign(editable, {
     style: 'none',
@@ -11,9 +11,9 @@ const Cell= ()=> {
     contentEditable: 'true'
   })
 
-  cell  .append(editable)
+    cell.append(editable)
 
-         return cell
+        return cell
 }
 
 export 
