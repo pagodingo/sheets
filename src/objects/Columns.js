@@ -1,25 +1,21 @@
 const Columns = () => {
 
-  let abc  = Array(27).keys()
-  let cols = document .createElement("tr")
+  let abc  = Array.from(Array(26).keys())
+                  .map(key => (key + 10)
+                  .toString(36)
+                  .toUpperCase())
+                  abc.unshift("") 
+    
+  let cols = document  .createElement("tr")
       cols .classList  = ['cols']
 
-  for (let a of abc) {
-
-       let letter = (a + 9)
-                  .toString(36)
-                  .toUpperCase()
-
-      /*----------*/
-
+  abc.forEach(letter => {
        let col = document.createElement("th")
            col.innerHTML = letter
            cols.appendChild(col)
-  }
-
-     /*----------*/ // columns start one over -->  __|A|B|C
-
-           cols.firstChild.innerHTML = ""
+  })
+           
+           //cols.firstChild.innerHTML = ""// columns start one over -->  __|A|B|C
            return cols
 }
   
