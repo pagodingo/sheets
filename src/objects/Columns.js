@@ -14,9 +14,7 @@ const Columns = () => {
            col.innerHTML = letter
            cols.appendChild(col)
   })
-           
-           //cols.firstChild.innerHTML = ""// columns start one over -->  __|A|B|C
-           return cols
+    return cols
 }
   
 export 
