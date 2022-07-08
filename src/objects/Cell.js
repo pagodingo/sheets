@@ -13,7 +13,7 @@ const Cell = () => {
 
     cell.append(editable)
 
-        return cell
+  return cell
 }
 
 export 
