@@ -4,7 +4,7 @@ const Columns = () => {
                   .map(key => (key + 10)
                   .toString(36)
                   .toUpperCase())
-                  abc.unshift("") 
+                  abc.unshift("") // columns start one over --> __|A|B|C
     
   let cols = document  .createElement("tr")
       cols .classList  = ['cols']
