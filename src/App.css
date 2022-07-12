@@ -42,6 +42,9 @@ tr:not(:first-child)::before {
 
 .active {
   border: 1.5px solid blue !important;
+  width: 217px;
+  height: 84px;
+  position: absolute;
 }
 
 .cols {
