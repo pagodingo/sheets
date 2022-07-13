@@ -2,13 +2,13 @@ import Cols from "./Columns"
 import Rows from "./Rows"
 
 const Table  = () => {
-  let  count = 100
+  let  rowCount = 100
   let  table = document.getElementById("table")
        table .appendChild(Cols())
 
-  for (let c = count; --c;) 
+  for (let i = 0; i < rowCount; ++i)
   {
-       table .appendChild(Rows())
+       table .appendChild(Rows(i))
   }
 
 }

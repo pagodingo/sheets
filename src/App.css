@@ -1,8 +1,19 @@
 body{background-color: #ffffff;font-family:'Times New Roman', Times, serif; margin: 0; padding: 0;}
 ::-webkit-scrollbar {display: none;}
-input, .cell {background: transparent; outline: none; cursor: pointer; } 
 
-td, th {border: .5px solid #ddd; width: 90px; text-align:left;}
+
+
+
+.cell {
+  background: transparent; 
+  outline: none; 
+  cursor: pointer; 
+}
+
+td, th {
+  border: .5px solid #ddd; 
+  width: 90px;
+}
 th { 
   background-color:#f4f5f8; 
   text-align: center; 
@@ -42,9 +53,6 @@ tr:not(:first-child)::before {
 
 .active {
   border: 1.5px solid blue !important;
-  width: 217px;
-  height: 84px;
-  position: absolute;
 }
 
 .cols {

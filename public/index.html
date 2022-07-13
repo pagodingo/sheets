@@ -4,28 +4,35 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Editor</title>
+    <title>Sheets</title>
     <script type="module" src="highlighting.js"></script>
     <script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous"></script>
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
   </head>
-  <script src="./index.js"></script>
   <body>
     <div id="root"></div>
   </body>
   <script>
-    $(() => {
-      $("td").mousedown((e) => {
-        console.log(e.target.parentElement);
+   $(() => {
+      let selected = [], selecting = false, cell = $('td')
+      $("td")
+      cell.mousedown(function (e) {
+        selecting = true;
+        console.log("selecting");
+      })
+      cell.mouseup(function () {
+        selecting = false;
+        console.log("not selecting")
+      })
+      cell.mouseover((e) => {
+        if (selecting === true) {
+          //$(e.target).toggleClass('active')
+        }
       })
     })
-    /*$(document).ready(() => {
-  $('.delete-file').on('click', function() {
-    let element = $(this);
-    console.log(element);
-  });
-});*/
+    
   </script>
 </html>

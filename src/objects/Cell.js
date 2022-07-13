@@ -1,21 +1,20 @@
 import activeCell from "../core/active-cell"
 
 const Cell = (x, y) => {
-  let cell      =  document.createElement("td")
-      //cell      .setAttribute("position", "this")
-  let editable  =  document.createElement("div")
 
-  Object.assign(editable, {
-    style: 'none',
+  let cell = document.createElement("td")
+
+  Object.assign(cell, {
+    /*style: 'none',*/
     classList: ['cell'],
     onclick: activeCell,
     contentEditable: 'true',
-    position: 'this'
+    position: [x, y]
   })
 
-  cell.append(editable)
+     //cell.append(editable)
 
-  return cell
+     return cell
 }
 
 export 

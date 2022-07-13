@@ -1,20 +1,20 @@
 const Columns = () => {
 
-  let abc  = Array.from(Array(26).keys())
+  let alphabet  = Array.from(Array(26).keys())
                   .map(key => (key + 10)
                   .toString(36)
                   .toUpperCase())
-                  abc.unshift("") // columns start one over --> __|A|B|C
+                  alphabet.unshift("") // columns start one over --> __|A|B|C
     
-  let cols = document  .createElement("tr")
-      cols .classList  = ['cols']
+  let columns = document  .createElement("tr")
+      columns .classList  = ['cols']
 
-  abc.forEach(letter => {
-       let col = document.createElement("th")
-           col.innerHTML = letter
-           cols.appendChild(col)
+  alphabet.forEach(letter => {
+       let column = document.createElement("th")
+           column.innerHTML = letter
+           columns.appendChild(column)
   })
-    return cols
+    return columns
 }
   
 export 
