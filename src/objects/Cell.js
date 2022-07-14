@@ -6,8 +6,8 @@ const Cell = (x, y) => {
 
   Object.assign(cell, {
     /*style: 'none',*/
-    classList: ['cell'],
-    onclick: activeCell,
+    classList: ['inactive'],
+    //onclick: activeCell,
     contentEditable: 'true',
     position: [x, y]
   })

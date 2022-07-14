@@ -1,28 +1,32 @@
 body{background-color: #ffffff;font-family:'Times New Roman', Times, serif; margin: 0; padding: 0;}
 ::-webkit-scrollbar {display: none;}
 
-
-
-
 .cell {
   background: transparent; 
   outline: none; 
-  cursor: pointer; 
+  cursor: pointer;
+  z-index: -2;
 }
 
-td, th {
+.inactive {
   border: .5px solid #ddd; 
   width: 90px;
+  margin: 0; padding: 0;
+  z-index: -4;
 }
+
 th { 
-  background-color:#f4f5f8; 
+  position: relative;
+  width: 90px; 
+  height: 40px;
   text-align: center; 
   color:#000000b9; 
   font-weight: 200; 
   font-size: 11px; 
   padding: 10px; 
   border-top: 0;
-  border-right: .5px solid #ddd;
+  border-right: 1px solid #ffffff;
+  margin: 0; padding: 0;
 }
 
 table {
@@ -31,32 +35,51 @@ table {
   border-collapse: collapse;
   counter-reset: rowNumber;
   cursor: pointer;
-  
 }
 
-/*Row Markers*/
+/**************8* Row Markers **********************/
 
 tr:not(:first-child)::before {
   position: sticky;
   left: 0;
-  padding: 5px;
-  background-color:#f4f5f8;
-  border: .5px solid #ddd;
-  padding-right: 1px;
+  background-color:#ddd;
+  border: 1px solid #ffffff;
   font-size: 10px;
   display: table-cell;
   counter-increment: rowNumber; content: counter(rowNumber) "";
   text-align: center;
-  color: #000000b9;
-  z-index: 0;
+  color: #000000;
+  z-index: -1;
 }
+
+/********* Row Markers ********************/
+
 
 .active {
-  border: 1.5px solid blue !important;
+  border: .5px solid blue !important;
 }
 
-.cols {
+.columns {
+  background-color:#ddd;
   position: sticky; 
   top: 0;
-  z-index: 1;
 }
+
+
+/************ Resizable columns ****************/
+.resizer {
+  /* Displayed at the right side of column */
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5px;
+  cursor: col-resize;
+  user-select: none;
+}
+
+
+.resizer:hover,
+.resizing {
+  border-right: 2px solid blue;
+}
+/************ Resizable columns ****************/
