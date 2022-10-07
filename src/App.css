@@ -42,7 +42,7 @@ table {
 tr:not(:first-child)::before {
   position: sticky;
   left: 0;
-  background-color:#ddd;
+  background-color:#f8f5f5;
   border: 1px solid #ffffff;
   font-size: 10px;
   display: table-cell;
@@ -60,7 +60,7 @@ tr:not(:first-child)::before {
 }
 
 .columns {
-  background-color:#ddd;
+  background-color:#f8f5f5;
   position: sticky; 
   top: 0;
 }
