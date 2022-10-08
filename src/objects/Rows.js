@@ -11,6 +11,4 @@ const Rows = (rowNumber) => {
 return  row
 }
 
-export 
-default 
-Rows
+export default Rows
