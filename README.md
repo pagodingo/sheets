@@ -1,1 +1,1 @@
-<img src="./images/new_sheet.png" alt="dmo.png" />
+<img src="./preview.png" alt="dmo.png" />
