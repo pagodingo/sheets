@@ -17,6 +17,4 @@ const Cell = (x, y) => {
      return cell
 }
 
-export 
-default 
-Cell
+export default Cell
