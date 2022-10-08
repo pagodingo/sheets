@@ -1,6 +1,12 @@
 body{background-color: #ffffff;font-family:'Times New Roman', Times, serif; margin: 0; padding: 0;}
 ::-webkit-scrollbar {display: none;}
 
+/*
+:root {
+  --pew: green;
+}
+*/
+
 .cell {
   background: transparent; 
   outline: none; 
