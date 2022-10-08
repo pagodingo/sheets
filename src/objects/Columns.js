@@ -18,6 +18,4 @@ const Columns = () => {
     return columns
 }
   
-export 
-default 
-Columns
+export default Columns
