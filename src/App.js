@@ -4,19 +4,11 @@ import "./App.css"
 
 
 class App extends React.Component {
-    constructor()
-  { 
-     super()
+  componentDidMount() {
+    Table();
   }
-  
-    componentDidMount() 
-  {
-    Table()
-  }
-
-    render() 
-  { 
-    return <table id="table"/> 
+  render() { 
+    return <table id="table"/>;
   }
 }
 export 
