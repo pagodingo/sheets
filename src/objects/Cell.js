@@ -5,16 +5,12 @@ const Cell = (x, y) => {
   let cell = document.createElement("td")
 
   Object.assign(cell, {
-    /*style: 'none',*/
     classList: ['inactive'],
-    //onclick: activeCell,
     contentEditable: 'true',
     position: [x, y]
   })
-
-     //cell.append(editable)
-
-     return cell
+  
+  return cell
 }
 
 export default Cell
