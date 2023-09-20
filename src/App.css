@@ -50,7 +50,7 @@ tr:not(:first-child)::before {
   position: sticky;
   left: 0;
   background-color:#f4f5f8;
-  border: 0.5px solid #ddd;
+  outline: 0.5px solid #ddd;
   font-size: 10px;
   display: table-cell;
   counter-increment: rowNumber; content: counter(rowNumber) "";
